@@ -1,32 +1,30 @@
-import './BlogContent.css'
+import { posts } from '../../shared/projectData';
+import { getAmountOfPosts } from '../../shared/projectLogic';
+import './BlogContent.css';
+
 
 export const BlogContent = () => {
+
+  const blockPosts = posts.map((item) => {
+    return (
+      <div key={item.id} className="post">
+        <h2>{item.title}</h2>
+        <p>
+          {item.description}
+        </p>
+      </div>
+    );
+  })
+
   return (
     <>
       <h1>Simple Blog</h1>
       <div className="posts">
-        <div className="post">
-          <h2>Post 1</h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, fugiat harum. Voluptatibus beatae corrupti nulla, qui odit mollitia doloremque rerum magni rem aut laborum, maiores officiis laboriosam hic. Ratione, voluptas?
-          </p>
-        </div>
-        <div className="post">
-          <h2>Post 2</h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, fugiat harum. Voluptatibus beatae corrupti nulla, qui odit mollitia doloremque rerum magni rem aut laborum, maiores officiis laboriosam hic. Ratione, voluptas?
-          </p>
-        </div>
-        <div className="post">
-          <h2>Post 3</h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, fugiat harum. Voluptatibus beatae corrupti nulla, qui odit mollitia doloremque rerum magni rem aut laborum, maiores officiis laboriosam hic. Ratione, voluptas?
-          </p>
-        </div>
+        {blockPosts}
       </div>
 
       <div className="count">
-        <button>Get amount of posts</button>
+        <button onClick = {() => console.log(getAmountOfPosts(posts))} >Get amount of posts</button>
       </div>
 
     </>
