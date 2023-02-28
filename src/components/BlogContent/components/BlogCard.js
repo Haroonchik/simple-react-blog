@@ -1,4 +1,7 @@
-export const BlogCard = ({ title, description, likeCount, likePost }) => {
+import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
+export const BlogCard = ({ title, description, likePost, liked }) => {
+
+  const heartFill = liked ? "crimson" : "black"
 
   return (
     <div className="post">
@@ -7,8 +10,9 @@ export const BlogCard = ({ title, description, likeCount, likePost }) => {
         {description}
       </p>
       <div>
-        <button onClick={likePost}>Like</button>
-        {likeCount}
+        <button onClick={likePost}>
+          <FavoriteTwoToneIcon style={{fill: heartFill}}/>
+        </button>
       </div>
     </div>
   );
