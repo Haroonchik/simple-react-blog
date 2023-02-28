@@ -10,7 +10,7 @@ export function App() {
       <main>
         <BlogContent />
       </main>
-      <Footer />
+      <Footer year={new Date().getFullYear()}/>
     </div>
   );
 }

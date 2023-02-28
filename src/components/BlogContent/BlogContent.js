@@ -1,27 +1,65 @@
+import { Component } from 'react';
 import { posts } from '../../shared/projectData';
 import './BlogContent.css';
 import { BlogCard } from './components/BlogCard';
 
+export class BlogContent extends Component {
 
-export const BlogContent = () => {
+  state = {
+    showBlog: true,
+    blogArr: posts,
+  }
 
-  const blockPosts = posts.map((item) => {
+  likePost = pos => {
+    let temp = this.state.blogArr;
+    temp[pos].likeCount++;
+
+    this.setState({
+      blogArr: temp
+    });
+
+  }
+
+  toggleBlog = () => {
+    this.setState(state => {
+      return {
+        showBlog: !state.showBlog
+      }
+    })
+  }
+
+  render() {
+    const blockPosts = this.state.blogArr.map((item, pos) => {
+      return (
+        <BlogCard
+          key={item.id}
+          title={item.title}
+          description={item.description}
+          likeCount={item.likeCount}
+          likePost={() => this.likePost(pos)}
+        />
+      );
+    })
+
     return (
-     <BlogCard 
-      key = {item.id}
-      title = {item.title}
-      description = {item.description}
-     />
+      <>
+        <button onClick={this.toggleBlog}>
+          {
+            this.state.showBlog ? 'Скрыть блог'
+              : 'Показать блог'
+          }
+        </button>
+        {
+          this.state.showBlog ?
+            <>
+              <h1>Simple Blog</h1>
+              <div className="posts">
+                {blockPosts}
+              </div>
+            </>
+            : null
+        }
+      </>
     );
-  })
-
-  return (
-    <>
-      <h1>Simple Blog</h1>
-      <div className="posts">
-        {blockPosts}
-      </div>
-
-    </>
-  );
+  }
 }

@@ -1,5 +1,4 @@
-
-export const BlogCard = ({title, description}) => {
+export const BlogCard = ({ title, description, likeCount, likePost }) => {
 
   return (
     <div className="post">
@@ -7,6 +6,10 @@ export const BlogCard = ({title, description}) => {
       <p>
         {description}
       </p>
+      <div>
+        <button onClick={likePost}>Like</button>
+        {likeCount}
+      </div>
     </div>
   );
 
